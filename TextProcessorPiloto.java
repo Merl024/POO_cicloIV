@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class TextProcessor {
+public class TextProcessorPiloto {
     
     /* OPERACION 1 */
     /*  contabilizar cuantas palabras tiene el texto.
@@ -13,20 +13,17 @@ public class TextProcessor {
         // Reemplazar a los signos de puntuacion y numeros para evitar que aparezcan en el conteo
         texto = texto.replaceAll("[.,;:!?/¿¡\"'()\\[\\]{}0-9]", " ");
         
-        // Identificamos las palabras por medio de los espacios. 
+        // Identificamos las palabras. 
         String[] palabras = texto.trim().split("\\s+");
 
-        // Enlistamos las palabras con su conteo para comprobar que se cuentan correctamente sin incluir signos ni numeros
+        // Imprimos con conteo las palabras para comprobar 
         System.out.println("Palabras detectadas:");
         int contador = 0;
-
-        // Por cada palabra en el arreglo de palabras, el contador se actualizara.
         for (String palabra : palabras) {
             contador+=1;
             System.out.println(contador + ". " + palabra);
         }
-
-        // Retornamos el contador para imprimirlo en consola
+        // Contamos las palabras
         return contador;
     }
 
@@ -35,7 +32,7 @@ public class TextProcessor {
         No tome en cuenta si está en mayúscula o minúscula. Tampoco cuente los signos de puntación. */
     public static String palabraFrecuente(String texto){
         
-        // Convertimos el párrafo a minúsculas y eliminamos signos
+        // Convertimos el párrafo a minúsculas y eliminamos puntuaciones básicas
         texto = texto.toLowerCase().replaceAll("[.,;:!?/¿¡\"'()\\[\\]{}0-9]", "");
         
         // Dividir el párrafo en palabras
@@ -50,9 +47,7 @@ public class TextProcessor {
         int maxRpeticiones = 0;
 
         for (int i = 0; i < n; i++) {
-            if (contadas[i]){
-                continue; // si ya esta contada, la salta
-            } 
+            if (contadas[i]) continue; // Si ya se contó, saltar
 
             int contador = 1; // Contamos la palabra actual
 
@@ -77,11 +72,7 @@ public class TextProcessor {
     
     /* OPERACION 3 */
     /* Encontrar todas las palabras palíndromas en el texto.
-        - Listar las PALABRAS palíndromas encontradas y su posición en el texto. 
-        Este constara de dos funciones, uno booleano y otro string
-        */
-
-    // Funcion para ENLISTAR las palabras palindromas en el texto con su posicion
+        - Listar las PALABRAS palíndromas encontradas y su posición en el texto. */
     public static String palabrasPalindromas(String texto) {
         // Ignoramos las mayusculas
         texto = texto.toLowerCase();
@@ -96,7 +87,7 @@ public class TextProcessor {
         String resultado = "";
         boolean hayPalindromos = false;
 
-        // Verificamos cada palabra, para confirmar si es palindroma
+        // Verificamos cada palabra
         for (int i = 0; i < palabras.length; i++) {
             if (esPalindromo(palabras[i])) {
                 resultado += "Posición " + (i + 1) + ": " + palabras[i] + "\n";
@@ -104,30 +95,23 @@ public class TextProcessor {
             }
         }
 
-        //Dependiendo de si hay palindroma o no retornara diferentes mensajes. 
+
         if (!hayPalindromos) {
             return "No hay palabras palíndromas en el texto.";
         }
 
         return "Palabras palíndromas encontradas:\n" + resultado;
     }
-
-    // Funcion especificamente para comprobar si es palindroma o no
     public static boolean esPalindromo(String texto) {
-        // Nos aseguramos que estamos buscando una palabra palindroma de MAS DE UN caracter
-        if (texto.length() > 1){
-            int izquierda = 0;
-            int derecha = texto.length() - 1;
-    
-            while (izquierda < derecha) {
-                if (texto.charAt(izquierda) != texto.charAt(derecha)) {
-                    return false;
-                }
-                izquierda++;
-                derecha--;
+        int izquierda = 0;
+        int derecha = texto.length() - 1;
+
+        while (izquierda < derecha) {
+            if (texto.charAt(izquierda) != texto.charAt(derecha)) {
+                return false;
             }
-        } else{
-            return false; // si es solo una letra no es palindromo.
+            izquierda++;
+            derecha--;
         }
         return true;
     }
@@ -138,7 +122,6 @@ public class TextProcessor {
         (sobre el total de vocales en el texto). Luego, señalar el ratio de vocales a consonantes. 
         Ignore las mayúsculas y los signos de puntuación. */
     public static String contadorDeVocales(String texto) {
-        // Ponemos el texto como un arreglo de letras
         texto = texto.toLowerCase();
         texto = texto.replaceAll("[.,;:!?¿¡\"'()\\[\\]{}0-9]", "");
         texto = texto.replaceAll("[áéíóú]", "aeiou");
@@ -146,41 +129,29 @@ public class TextProcessor {
 
         int contadorVocales = 0;
         int contadorConsonantes = 0;
-        int[] vocales = new int[5]; // [a, e, i, o, u] en ese orden se guardara las veces que se sume en el switch. Ej: [3, 5, 0, 0, 1]
-        // El output seria 3 -> a, 5 -> e y asi respectivamente.
-        
+        int[] vocales = new int[5]; // a, e, i, o, u
 
-        /* Por medio del iterados, vamos a ir sumando una cantidad cada que reconozca los diferentes casos
-         * de vocales. Para manejar eso, ocupamos un switch, si reconoce una vocal la suma al contadorVocales. 
-         * Y sino, lo suma a las consonantes
-         */
         for (char letra : texto.toCharArray()) {
             switch (letra) {
                 case 'a' -> {
-                    vocales[0]++; 
-                    contadorVocales++;
+                    vocales[0]++; contadorVocales++;
                 }
                 case 'e' -> {
-                    vocales[1]++; 
-                    contadorVocales++;
+                    vocales[1]++; contadorVocales++;
                 }
                 case 'i' -> {
-                    vocales[2]++; 
-                    contadorVocales++;
+                    vocales[2]++; contadorVocales++;
                 }
                 case 'o' -> {
-                    vocales[3]++; 
-                    contadorVocales++;
+                    vocales[3]++; contadorVocales++;
                 }
                 case 'u' -> {
-                    vocales[4]++; 
-                    contadorVocales++;
+                    vocales[4]++; contadorVocales++;
                 }
                 default -> contadorConsonantes++;
             }
         }
 
-        // Calculamos el total de vocales y consonantes para calcular el ratio de vocales a consonantes.
         double totalVocales = (double) contadorVocales;
         String resultado = "La cantidad de vocales es " + contadorVocales +
                             "\nLa cantidad de consonantes es " + contadorConsonantes +
@@ -188,7 +159,6 @@ public class TextProcessor {
 
         resultado += "\nDistribución de vocales:";
         String[] letras = {"a", "e", "i", "o", "u"};
-        // Iteramos para mostrar la distribución de vocales y su porcentaje respectivo.
         for (int i = 0; i < vocales.length; i++) {
             double porcentaje = 0;
             if (totalVocales > 0) {
@@ -198,42 +168,23 @@ public class TextProcessor {
             // Ocupamos String.format para controlar cuantos decimales se muestran y estar concatenando varias veces. 
             // s pala las letras, d para el numero y .2f para el porcentaje y cuantos decimales se quieren mostrar.
         }
+
         return resultado;
-    }
-
-    /* OPERACION 5 */ 
-    /* Invertir cada palabra de 4 letras o más que aparece en el texto. 
-    Imprimir en consola el texto con las palabras invertidas.  */
-    public static String invertirPalabras(String texto) {
-        String[] palabras = texto.split(" ");
-        // Creamos un StringBuilder para construir el nuevo texto con las palabras totalmente invertidas
-        StringBuilder inverted = new StringBuilder();
-
-        for (String palabra : palabras) {
-            // solo si es mayor o igual a 4 caracteres le damos vuelta
-            if (palabra.length() >=4) {
-                palabra = new StringBuilder(palabra).reverse().toString();
-            }
-            // agregamos la palabra invertida con un espacio para que se vea ordenado
-            inverted.append(palabra).append(" ");
-        }
-
-        System.out.println("Texto con palabras invertidas:");
-        // Y acá solo eliminamos el espacio final
-        return inverted.toString().trim();
     }
 
     /* FUNCION MAIN */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("\t¡Bienvenido al programa de procesador de texto!\n");
+        // System.out.println("Ingrese su parrafo: ");
+        // String parrafo = scanner.nextLine();
+
+        /* ?????? No contamos las palabras que tengan acentuacion?????  */
         String parrafo = """
-        Texto a revisar: 
                 Ejercicio 2: Procesador de Texto Avanzado (50 puntos) 
                 Desarrolla un programa que procese un texto y realice 
                 varios análisis utilizando bucles y estructuras de control. 
                 El programa debe demostrar comprensión de bucles while/for  
-                y manejo de strings. Ana lava la tina y reconoce el nivel de radar.\n
+                y manejo de strings. Ana lava la tina y reconoce el nivel de radar.
                 """;
         System.out.println(parrafo);
         boolean condicion = true;
@@ -248,48 +199,43 @@ public class TextProcessor {
                 5. Invertir cada palabra de 4 letras o más que aparece en el texto
                 6. Salir.\n
                 """);
-            String opcion = scanner.nextLine();
+            int opcion = scanner.nextInt();
             switch (opcion){
-                case "1" -> {
-                    // Directamente imprimimos el resultado del conteoPalabras y como argumento le pasamos el parrafo
+                case 1 -> {
                     System.out.println("La cadena tiene " + conteoPalabras(parrafo) + " palabras\n");
                     System.out.println("");
 
                     break;
                 }
-                case "2" -> {
-                    // Directamente imprimimos el resultado del palabraFrecuente y como argumento le pasamos el parrafo
+                case 2 -> {
                     System.out.println(palabraFrecuente(parrafo));
                     System.out.println("");
                     break;
                 }
-                case "3" -> {
-                    System.out.println(palabrasPalindromas(parrafo));
+                case 3 -> {
+                    String palindromas = palabrasPalindromas(parrafo);
+                    System.out.println(palindromas);
                     System.out.println("");
 
                     break;
                 }
-                case "4" -> {
+                case 4 -> {
                     System.out.println("\nEstadistica de vocales y su porcentaje: ");
                     System.out.println(contadorDeVocales(parrafo));
                     System.out.println("");
                     break;
                 }
-                case "5" -> {
-                    // String textoInvertido = invertirPalabras(parrafo);
-                    // imprimir el texto invertido en base al párrafo que hay acá arriba
-                    System.out.println(invertirPalabras(parrafo));
-                    System.out.println("");
+                case 5 -> {
                     break;
                 }
-                case "6" -> {
+                case 6 -> {
                     condicion = false;
                     System.out.println("Saliendo del programa...");
                     break;
                 }
                 default -> System.out.println("Opción incorrecta. Intente nuevamente.");
-                // esto se encarga de los espacios en blanco, es decir, que el programa si sepa que hacer con ellos
             }
         }
     }
 }
+
