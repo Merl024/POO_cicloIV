@@ -121,27 +121,55 @@ public class TextProcessor {
         - Para un texto dado, contabilizar cuántas veces aparece cada una de las vocales y qué porcentaje corresponde a cada vocal 
         (sobre el total de vocales en el texto). Luego, señalar el ratio de vocales a consonantes. 
         Ignore las mayúsculas y los signos de puntuación. */
-    public static void contadorDeVocales(String texto) {
+    public static String contadorDeVocales(String texto) {
         texto = texto.toLowerCase();
-        texto = texto.replaceAll("[.,;:!?¿¡\"'()\\[\\]{}0-9]", " ");
+        texto = texto.replaceAll("[.,;:!?¿¡\"'()\\[\\]{}0-9]", "");
         texto = texto.replaceAll("[áéíóú]", "aeiou");
         texto = texto.replace(" ", "");
 
-        int totalLetras = texto.length();
-        int contadorVocal = 0, i;
-        int contadorConsonante = 0;
-        // char[] vocales = {'a', 'e', 'i', 'o', 'u'};
-        char letra;
+        int contadorVocales = 0;
+        int contadorConsonantes = 0;
+        int[] vocales = new int[5]; // a, e, i, o, u
 
-        for ( i = 0; i < totalLetras; i++){
-            letra = Character.toLowerCase(texto.charAt(i));
-            if ( letra == 'a' || letra == 'e' || letra == 'i' || letra == 'o' || letra == 'u'){
-                contadorVocal++;
-            } else{ 
-                contadorConsonante++;
+        for (char letra : texto.toCharArray()) {
+            switch (letra) {
+                case 'a' -> {
+                    vocales[0]++; contadorVocales++;
+                }
+                case 'e' -> {
+                    vocales[1]++; contadorVocales++;
+                }
+                case 'i' -> {
+                    vocales[2]++; contadorVocales++;
+                }
+                case 'o' -> {
+                    vocales[3]++; contadorVocales++;
+                }
+                case 'u' -> {
+                    vocales[4]++; contadorVocales++;
+                }
+                default -> contadorConsonantes++;
             }
         }
-        System.out.println("La cantidad de vocales es " + contadorVocal);
+
+        double totalVocales = (double) contadorVocales;
+        String resultado = "La cantidad de vocales es " + contadorVocales +
+                            "\nLa cantidad de consonantes es " + contadorConsonantes +
+                            "\nRatio vocales/consonantes: " + (contadorVocales / (double) contadorConsonantes);
+
+        resultado += "\nDistribución de vocales:";
+        String[] letras = {"a", "e", "i", "o", "u"};
+        for (int i = 0; i < vocales.length; i++) {
+            double porcentaje = 0;
+            if (totalVocales > 0) {
+                porcentaje = (vocales[i] / totalVocales) * 100;
+            }
+            resultado += String.format("\n  %s: %d con un porcentaje de %.2f%%", letras[i], vocales[i], porcentaje); 
+            // Ocupamos String.format para controlar cuantos decimales se muestran y estar concatenando varias veces. 
+            // s pala las letras, d para el numero y .2f para el porcentaje y cuantos decimales se quieren mostrar.
+        }
+
+        return resultado;
     }
 
     /* FUNCION MAIN */
@@ -175,20 +203,26 @@ public class TextProcessor {
             switch (opcion){
                 case 1 -> {
                     System.out.println("La cadena tiene " + conteoPalabras(parrafo) + " palabras\n");
+                    System.out.println("");
+
                     break;
                 }
                 case 2 -> {
                     System.out.println(palabraFrecuente(parrafo));
+                    System.out.println("");
                     break;
                 }
                 case 3 -> {
                     String palindromas = palabrasPalindromas(parrafo);
                     System.out.println(palindromas);
+                    System.out.println("");
+
                     break;
                 }
                 case 4 -> {
-                    System.out.println("Estadistica de vocales y su porcentaje: ");
-                    contadorDeVocales(parrafo);
+                    System.out.println("\nEstadistica de vocales y su porcentaje: ");
+                    System.out.println(contadorDeVocales(parrafo));
+                    System.out.println("");
                     break;
                 }
                 case 5 -> {
