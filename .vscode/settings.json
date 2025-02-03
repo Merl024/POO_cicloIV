@@ -1,0 +1,11 @@
+{
+    "java.debug.settings.onBuildFailureProceed": true,
+    "java.project.sourcePaths": [
+        "semana3",
+        "semana2/clase03",
+        "semana1/clase01",
+        "repaso",
+        "actividadesPracticas",
+        ""
+    ]
+}
