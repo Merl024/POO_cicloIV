@@ -1,3 +1,4 @@
+package ActPractica1;
 import java.util.Scanner; 
 
 /* Hecho por Alisson Quijano (20245233) y Melisa Rivas (20245324) */
@@ -79,7 +80,7 @@ public class PasswordAnalizer{
         } else if (score >= 3) {
             resultado = "Su contraseña cumple con 3-4 criterios, posee fortaleza media. \nAgregue las recomendaciones para que su contraseña sea válida";
         } else {
-            resultado = "Su contraseña necesita cumplir con más criterios. Posee debilidad. \nAdd up the recommendations";
+            resultado = "Su contraseña necesita cumplir con más criterios. Posee debilidad.";
         }
 
         // Imprimir los resultados y las sugerencias para mejorar la contraseña
@@ -92,3 +93,47 @@ public class PasswordAnalizer{
     }
     // \n sirve para hacer un salto de línea.
 }
+
+// --------------------------------------------------------------------------
+/*
+● PRIMER CASO
+➤ Contraseña ingresada: Password123
+
+➤ Respuesta del sistema
+Enter your password: 
+Password123
+Su contraseña cumple con 3-4 criterios, posee fortaleza media. 
+Agregue las recomendaciones para que su contraseña sea válida
+Sugerencias para mejorar su contraseña: 
+La contraseña debe llevar al menos un carácter especial.
+--------------------------------------------------------------------------
+● SEGUNDO CASO
+➤ Contraseña ingresada: @Esen2025!
+
+➤ Respuesta del sistema
+Enter your password: 
+@Esen2025!
+Es una contraseña fuerte. 
+Felicidades!. Su contraseña es válida.
+Gracias por revisar tu password. Regresa pronto!
+--------------------------------------------------------------------------
+● TERCER CASO
+➤ Contraseña ingresada: petroniloja
+
+➤ Respuesta del sistema
+Enter your password: 
+petroniloja
+Su contraseña necesita cumplir con más criterios. Posee debilidad.
+Sugerencias para mejorar su contraseña: 
+La contraseña debe llevar al menos una letra mayúscula.
+La contraseña debe llevar al menos un número.
+La contraseña debe llevar al menos un carácter especial.
+--------------------------------------------------------------------------
+● CUARTO CASO
+➤ Contraseña ingresada: -espacio en blanco-
+
+➤ Respuesta del sistema
+Enter your password: 
+
+La contraseña no puede ir vacía. Ingrese una contraseña válida.
+*/
