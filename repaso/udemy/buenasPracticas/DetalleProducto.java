@@ -1,4 +1,4 @@
-package buenasPracticas;
+package udemy.buenasPracticas;
 
 public class DetalleProducto {
     public static void main(String[] args) {

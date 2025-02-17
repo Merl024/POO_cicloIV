@@ -30,7 +30,8 @@ public class VerificadorDePrimos {
                     esPrimo = false;
                     break;
                 }
-                divisor += 2;
+                divisor += 2; // Usualemente, la mayoria de los numeros impares son primos, por eso se le 
+                // Suma 2 por cada vez que se itera. 
                 // Si no se encuentra ningun divisor, entonces decimos que el numero es primo
             }
             if (esPrimo){

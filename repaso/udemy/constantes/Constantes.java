@@ -1,5 +1,5 @@
 
-package constantes;
+package udemy.constantes;
 
 public class Constantes {
     public static void main(String[] args) {

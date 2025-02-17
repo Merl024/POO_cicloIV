@@ -1,5 +1,5 @@
 
-package constantes;
+package udemy.constantes;
 
 public class ReservaHoteles {
     public static void main(String[] args) {

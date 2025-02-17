@@ -1,5 +1,5 @@
 
-package var;
+package udemy.var;
 
 public class TipoVar {
     public static void main(String[] args) {

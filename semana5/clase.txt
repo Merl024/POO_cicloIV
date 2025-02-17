@@ -1,0 +1,3 @@
+No es buena practica que los nombres de las clases tengan un verbo, sino reservarlos para los metodos. 
+
+La manera de organizar el codigo es por medio de los paquetes. 

@@ -1,5 +1,5 @@
 
-package tiposDeDatos;
+package udemy.tiposDeDatos;
 
 public class TiposDatos {
     /* Tipos de datos */

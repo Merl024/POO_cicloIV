@@ -26,6 +26,9 @@ public class VerificacionContrasenia {
                 intentos++;
             }
         }
+        if (intentos == 3){
+            System.out.println("Ha superado el número máximo de intentos. Por favor, intente nuevamente más tarde.");
+        }
         scanner.close();
     }
 }

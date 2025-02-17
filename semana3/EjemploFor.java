@@ -15,7 +15,7 @@ public class EjemploFor {
 
         // System.out.println("\nSuma");
         for (int i = suma; i<= numero; i++){
-            // System.out.println(i);
+            System.out.println(suma+=i);
         } 
 
         // System.out.println("\nResta");

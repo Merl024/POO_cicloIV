@@ -30,6 +30,7 @@ public class EjemploArrayList {
         System.out.println(carnets);
         System.out.println(carnets.size());
         // El metodo .get() funciona para mandarle un indice e imprima el valor que esta en esa posicion. 
-        // Con .set() se le da el index y el nuevo valor. Y cada nuevo elemento se va agregando al final. Pero hay un metodo que se llama .addFirst
+        // Con .set() se le da el index y el nuevo valor. Y cada nuevo elemento se va agregando al final. 
+        // Pero hay un metodo que se llama .addFirst
     }
 }

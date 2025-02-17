@@ -1,4 +1,4 @@
-package buenasPracticas;
+package udemy.buenasPracticas;
 
 public class ReglasVariables {
     public static void main(String[] args) {
